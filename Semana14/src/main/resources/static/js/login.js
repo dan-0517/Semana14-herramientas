@@ -1,0 +1,14 @@
+document.querySelectorAll("[data-password-toggle]").forEach((toggle) => {
+    const passwordInput = document.getElementById(toggle.getAttribute("aria-controls"));
+
+    if (!passwordInput) {
+        return;
+    }
+
+    toggle.addEventListener("click", () => {
+        const isVisible = passwordInput.type === "text";
+        passwordInput.type = isVisible ? "password" : "text";
+        toggle.setAttribute("aria-pressed", String(!isVisible));
+        toggle.setAttribute("aria-label", isVisible ? "Mostrar contraseña" : "Ocultar contraseña");
+    });
+});

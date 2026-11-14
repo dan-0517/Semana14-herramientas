@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#176b52">
+    <title>Iniciar sesión | Botica Salud Ica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/salud-ica.css}">
+    <script defer th:src="@{/js/login.js}"></script>
+</head>
+<body class="login-page">
+    <main class="login-layout">
+        <aside class="brand-panel" aria-labelledby="brand-title">
+            <div class="brand-panel__texture" aria-hidden="true"></div>
+            <header class="brand-lockup">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 7.5v33M7.5 24h33" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="24" cy="24" r="20.5" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                    </svg>
+                </span>
+                <span class="brand-lockup__text">
+                    <span class="brand-lockup__name">Botica</span>
+                    <strong id="brand-title">Salud Ica</strong>
+                </span>
+            </header>
+
+            <div class="brand-copy">
+                <p class="eyebrow eyebrow--light">PORTAL DEL PERSONAL</p>
+                <h1>Tu trabajo también es parte del cuidado.</h1>
+                <p class="brand-copy__support">Un espacio seguro para el equipo que acompaña la salud de nuestra comunidad.</p>
+            </div>
+
+            <div class="care-stamp" aria-hidden="true">
+                <span class="care-stamp__orbit care-stamp__orbit--one"></span>
+                <span class="care-stamp__orbit care-stamp__orbit--two"></span>
+                <span class="care-stamp__cross care-stamp__cross--vertical"></span>
+                <span class="care-stamp__cross care-stamp__cross--horizontal"></span>
+                <span class="care-stamp__dot"></span>
+            </div>
+
+            <footer class="brand-panel__footer">
+                <span>Atención cercana. Compromiso de siempre.</span>
+                <span class="brand-panel__location">ICA, PERÚ</span>
+            </footer>
+        </aside>
+
+        <section class="form-panel" aria-labelledby="login-title">
+            <div class="form-panel__inner">
+                <div class="form-heading">
+                    <p class="eyebrow">ACCESO INTERNO</p>
+                    <h2 id="login-title">Bienvenido de nuevo</h2>
+                    <p>Ingresa tus credenciales para acceder al sistema.</p>
+                </div>
+
+                <div class="form-error" role="alert" aria-live="assertive" th:if="${error != null}">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M12 7.5v5M12 16.2v.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+                    </svg>
+                    <span th:text="${error}">Credenciales incorrectas</span>
+                </div>
+
+                <form class="login-form" th:action="@{/login}" method="post">
+                    <div class="field">
+                        <label for="usuario">Usuario</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="8" r="3.25" stroke="currentColor" stroke-width="1.7"/>
+                                <path d="M5.5 19c.6-3.1 2.8-4.8 6.5-4.8s5.9 1.7 6.5 4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                            <input id="usuario" name="usuario" type="text" placeholder="Tu nombre de usuario" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="clave">Contraseña</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                                <path d="M8 10V7.5a4 4 0 0 1 8 0V10M12 14v2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                            <input id="clave" name="clave" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+                            <button class="password-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="clave" data-password-toggle>
+                                <svg class="password-toggle__show" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M2.8 12s3.2-5.3 9.2-5.3 9.2 5.3 9.2 5.3-3.2 5.3-9.2 5.3S2.8 12 2.8 12Z" stroke="currentColor" stroke-width="1.7"/>
+                                    <circle cx="12" cy="12" r="2.4" stroke="currentColor" stroke-width="1.7"/>
+                                </svg>
+                                <svg class="password-toggle__hide" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="m3 3 18 18M10.6 6.9A9.8 9.8 0 0 1 12 6.8c6 0 9.2 5.2 9.2 5.2a15 15 0 0 1-3.1 3.5M6.2 7.7C4 9.1 2.8 12 2.8 12s3.2 5.2 9.2 5.2c1 0 1.9-.2 2.7-.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="submit-button" type="submit">
+                        <span>Iniciar sesión</span>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4.5 12h14m-5.5-5.5 5.5 5.5-5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div class="secure-note">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M8 10V7.5a4 4 0 0 1 8 0V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                    <span>Acceso seguro exclusivo para el personal</span>
+                </div>
+            </div>
+            <footer class="form-footer">BOTICA SALUD ICA <span aria-hidden="true">·</span> SISTEMA INTERNO</footer>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#176b52">
+    <title>Acceso confirmado | Botica Salud Ica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/salud-ica.css}">
+</head>
+<body class="welcome-page">
+    <header class="welcome-header">
+        <a class="brand-lockup brand-lockup--dark" th:href="@{/login}" aria-label="Botica Salud Ica, volver al acceso">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <path d="M24 7.5v33M7.5 24h33" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="20.5" stroke="currentColor" stroke-width="2" opacity=".55"/>
+                </svg>
+            </span>
+            <span class="brand-lockup__text">
+                <span class="brand-lockup__name">Botica</span>
+                <strong>Salud Ica</strong>
+            </span>
+        </a>
+        <span class="welcome-header__context">SISTEMA INTERNO</span>
+    </header>
+
+    <main class="welcome-main">
+        <section class="welcome-message" aria-labelledby="welcome-title">
+            <div class="success-mark" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="m14.5 24.5 6.2 6.2 13-13" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="eyebrow">ACCESO CONFIRMADO</p>
+            <h1 id="welcome-title">¡Bienvenido,<br><span th:text="${usuario}">usuario</span>!</h1>
+            <p class="welcome-message__copy">Tu sesión está lista. Gracias por ser parte del equipo que cuida a nuestra comunidad.</p>
+        </section>
+
+        <section class="access-summary" aria-label="Datos de acceso">
+            <div class="access-summary__topline">
+                <span class="access-summary__indicator" aria-hidden="true"></span>
+                <span>Sesión activa</span>
+            </div>
+            <div class="access-summary__identity">
+                <span class="identity-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M5.5 19c.6-3.1 2.8-4.8 6.5-4.8s5.9 1.7 6.5 4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <div>
+                    <span class="access-summary__label">Usuario</span>
+                    <strong th:text="${usuario}">usuario</strong>
+                </div>
+            </div>
+            <div class="access-summary__role-block">
+                <span class="access-summary__label">Rol asignado</span>
+                <div class="role-badge" th:classappend="${rol == 'Administrador'} ? ' role-badge--admin' : (${rol == 'Cajero'} ? ' role-badge--cashier' : ' role-badge--stock')">
+                    <svg th:if="${rol == 'Administrador'}" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 3.5 19 6v5.2c0 4.2-2.8 7.6-7 9.3-4.2-1.7-7-5.1-7-9.3V6l7-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="m9 11.8 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg th:if="${rol == 'Cajero'}" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3.5" y="6" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M3.5 10h17M7.5 14.5h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                    </svg>
+                    <svg th:unless="${rol == 'Administrador' or rol == 'Cajero'}" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 8.5 12 4l8 4.5v9L12 22l-8-4.5v-9Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                        <path d="m4.5 8.7 7.5 4.2 7.5-4.2M12 13v8" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                    </svg>
+                    <span th:text="${rol}">Rol</span>
+                </div>
+            </div>
+            <p class="access-summary__note">Botica Salud Ica <span aria-hidden="true">·</span> Ica, Perú</p>
+        </section>
+    </main>
+
+    <footer class="welcome-footer">
+        <span>Atención cercana. Compromiso de siempre.</span>
+        <span>BOTICA SALUD ICA</span>
+    </footer>
+</body>
+</html>
