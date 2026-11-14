@@ -1,5 +1,4 @@
-package com.saludica.loginbotica.controller;
-
+package com.example.Semana14;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
